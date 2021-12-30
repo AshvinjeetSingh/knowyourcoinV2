@@ -7,7 +7,6 @@ import {
   News,
   Cryptocurrencies,
   CryptoDetails,
-  Nft,
   Navbar,
   Footer,
 } from "./Components/index";
@@ -36,7 +35,6 @@ const App = () => {
                   path="/crypto/:coinId"
                   element={<CryptoDetails />}
                 />
-                <Route exact path="/Nft" element={<Nft />} />
                 <Route exact path="/news" element={<News />} />
               </Routes>
             </div>
