@@ -385,3 +385,10 @@ width: 70%;
 .green{
     color:green
 }
+
+.ant-btn{
+    background-color: transparent!important;
+}
+.anticon-menu-fold,.anticon-menu-unfold{
+    color: #f6f6f7!important;
+}
