@@ -6,8 +6,6 @@ import {
   MoneyCollectOutlined,
   BulbOutlined,
   FundOutlined,
-  MenuOutlined,
-  FormatPainterOutlined,
   MenuUnfoldOutlined,
   MenuFoldOutlined,
 } from "@ant-design/icons";

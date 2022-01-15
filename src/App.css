@@ -392,3 +392,14 @@ width: 70%;
 .anticon-menu-fold,.anticon-menu-unfold{
     color: #f6f6f7!important;
 }
+
+.suggestion-container{
+    cursor: pointer;
+    border-left: 1px solid #000;
+    border-right: 1px solid #000;
+    border-bottom: 1px solid #000;
+}
+
+.suggestion-container:hover{
+    background-color: #cacbcc;
+}

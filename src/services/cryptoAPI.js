@@ -16,10 +16,13 @@ export const cryptoApi= createApi({
     getCryptos: builder.query({
       query: (count)=>createRequest(`/coins?limit=${count}`)
     }),
-    getNft: builder.query({
-      query: () => createRequest('/nfts'),
+    getCryptoOffset:builder.query({
+      query: (count)=>createRequest(`/coins?offset=${count}`)
+    }),
+    getSuggestion: builder.query({
+      query: (value) => createRequest(`/search-suggestions?query=${value}`),
     }),
   })
 
 })
-export const { useGetCryptosQuery,useGetNftQuery } = cryptoApi;
+export const { useGetCryptosQuery,useGetSuggestionQuery,useGetCryptoOffsetQuery } = cryptoApi;

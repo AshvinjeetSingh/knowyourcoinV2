@@ -1,6 +1,6 @@
 import React, { Fragment } from "react";
-import { Link, Route, Routes } from "react-router-dom";
-import { Typography, Layout, Space } from "antd";
+import { Route, Routes } from "react-router-dom";
+import { Layout} from "antd";
 import {
   Exchanges,
   Homepage,

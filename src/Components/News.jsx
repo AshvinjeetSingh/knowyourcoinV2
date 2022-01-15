@@ -1,4 +1,4 @@
-import React,{useState,useEffect} from 'react'
+import React,{useState} from 'react'
 import { Select,Typography,Avatar,Card, Row, Col } from "antd";
 import moment from 'moment'
 import {useGetBingNewsQuery} from "../services/bingNewsAPI"
