@@ -8,7 +8,7 @@ import {
 } from "../services/cryptoAPI";
 import Loader from "./Loader";
 import { Pagination } from "antd";
-import Complete from "./Autosuggest";
+import Autosuggest from "./Autosuggest";
 
 const Cryptocurrencies = ({ simplified }) => {
   const [offset, setOffset] = useState(0);
@@ -64,7 +64,7 @@ const Cryptocurrencies = ({ simplified }) => {
   return (
     <>
     {!simplified &&<div className="search-crypto">
-      <Complete/>
+      <Autosuggest/>
       </div>}
       
       <Row gutter={[32, 32]} className="crypto-card-container">

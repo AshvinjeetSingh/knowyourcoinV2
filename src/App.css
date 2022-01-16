@@ -403,3 +403,14 @@ width: 70%;
 .suggestion-container:hover{
     background-color: #cacbcc;
 }
+
+.search-crypto{
+    min-height: 30px;
+    position: relative;
+}
+#searchBar{
+    position: absolute;
+    z-index: 1;
+    background-color: #f0f2f5;
+}
+
