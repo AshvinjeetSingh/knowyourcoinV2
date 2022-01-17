@@ -22,7 +22,17 @@ export const cryptoApi= createApi({
     getSuggestion: builder.query({
       query: (value) => createRequest(`/search-suggestions?query=${value}`),
     }),
+    getExchanges: builder.query({
+      query: () => createRequest('/exchanges'),
+    }),
+    getCryptoDetails: builder.query({
+      query: (coinId) => createRequest(`/coin/${coinId}`),
+    }),
+
+    getCryptoHistory: builder.query({
+      query: ({ coinId, timeperiod }) => createRequest(`coin/${coinId}/history?timeperiod=${timeperiod}`),
+    }),
   })
 
 })
-export const { useGetCryptosQuery,useGetSuggestionQuery,useGetCryptoOffsetQuery } = cryptoApi;
+export const { useGetCryptosQuery,useGetSuggestionQuery,useGetCryptoOffsetQuery,useGetExchangesQuery,useGetCryptoDetailsQuery,useGetCryptoHistoryQuery } = cryptoApi;

@@ -1,18 +1,18 @@
 import React,{useEffect,useState} from 'react'
-import {useGetSuggestionQuery } from "../services/cryptoAPI";
+import {useGetExchangesQuery} from "../services/cryptoAPI";
 
 const Exchanges = () => {
-  const { data: cryptosList, isFetching } = useGetSuggestionQuery();
-  const [cryptos, setCryptos] = useState();
+  const { data: exchangesList, isFetching,isLoading,isSuccess,isError } = useGetExchangesQuery();
+  const [exchanges, setExchanges] = useState();
 
   useEffect(() => {
-      console.log("cryptosList",cryptosList)
-    setCryptos(cryptosList?.data?.name);
-  }, [cryptosList]);
+      console.log("exchangeList",exchangesList)
+    setExchanges(exchangesList?.data);
+  }, [exchangesList]);
 
   useEffect(()=>{
-    console.log(cryptos)
-  },[cryptos])
+    console.log(exchanges)
+  },[exchanges])
 
     return (
         <div>

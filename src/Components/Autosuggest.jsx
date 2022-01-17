@@ -35,6 +35,7 @@ const Autosuggest = (props) => {
   const [searchTerm, setSearchTerm] = useState("");
   const [coins, setCoins] = useState([]);
   const [matchCoins, setMatchCoins] = useState([]);
+  const [otherData, setOtherData] = useState([]);
   const {
     data: suggestionList,
     isLoading,
@@ -50,7 +51,7 @@ const Autosuggest = (props) => {
 
   useEffect(() => {
     setList(suggestionList?.data?.coins);
-    console.log("renderred list is",list)
+    console.log("renderred list is", list);
   }, [suggestionList, searchTerm]);
 
   useEffect(() => {
@@ -74,25 +75,20 @@ const Autosuggest = (props) => {
   }, [node]);
 
   useEffect(() => {
-    if(isLoading || isFetching){
-      setMatchCoins([]);
-      console.log("Wait for it")
-    }
-    else{
-      let suggestion = []
-      suggestion = coins && coins.length > 0 &&  coins 
+    if (isLoading || isFetching) {
+      return "Wait for it";
+    } else {
+      let suggestion = [];
+      suggestion = coins && coins.length > 0 && coins;
       setMatchCoins(suggestion);
-      console.log("hello I ma successful")
     }
-  }, [isLoading, isFetching,isSuccess]);
-
-  useEffect(()=>{
-    console.log("It is diff",matchCoins)
-  },[matchCoins])
-  
+  }, [isLoading, isFetching, isSuccess]);
 
   useEffect(() => {
-    console.log("List is changed")
+    console.log("It is diff", matchCoins);
+  }, [matchCoins]);
+
+  useEffect(() => {
     const data =
       list &&
       list.length > 0 &&
@@ -100,9 +96,11 @@ const Autosuggest = (props) => {
         item.name.replace(/\s+/g, "-").replace(/\./g, "-").trim()
       );
     setCoins(data);
+    const otherVal = list && list.length > 0 && list;
+    setOtherData(list);
   }, [list]);
   useEffect(() => {
-    console.log("coins are changed")
+    console.log("coins are changed");
     let suggestion = [];
     suggestion = coins && coins.length > 0 && coins;
     console.log("suggestion", suggestion);
@@ -111,58 +109,45 @@ const Autosuggest = (props) => {
 
   const onTextChanged = (e) => {
     const value = e.target.value;
-    // let suggestion = [];
-    // if (value.length > 0) {
-    //   const regex = new RegExp(`^${value}`, "i");
-    //   suggestion = coins && coins.length > 0 && coins;
-    // }
-    // console.log("suggestion", suggestion);
     setSearchTerm(value);
-    // setMatchCoins(suggestion);
   };
 
   const suggestionSelectedValue = (value) => {
-    setSearchTerm(value);
+    setSearchTerm(value.name);
     setMatchCoins([]);
-    history(`/coins/${value}`);
+    history(`/coins/${value.uuid}`);
   };
 
   const renderSuggestions = () => {
-    if (matchCoins.length <= 0) {
-      return (
-        <div className="ListCoinsNoRecord" id="ListCoins" ref={node}>
-          <p>No record found</p>
-        </div>
-      );
-    } else {
-      return (
-        <div className="ListCoins" id="ListCoins" ref={node}>
-          {isSuccess &&
-            !isLoading &&
-            !isFetching &&
-            matchCoins &&
-            matchCoins.length &&
-            matchCoins.map((item) => {
-              return (
-                <p
-                  ref={elem}
-                  id="pval"
-                  className="autoSuggestValues"
-                  onClick={() => suggestionSelectedValue(item)}
-                  style={{
-                    maxWidth: "100%",
-                    cursor: "pointer",
-                    border: "1px solid black",
-                    margin: "0px",
-                  }}
-                >
-                  {item}
-                </p>
-              );
-            })}
-        </div>
-      );
-    }
+    return (
+      <div className="ListCoins" id="ListCoins" ref={node}>
+        {isSuccess &&
+          !isLoading &&
+          !isFetching &&
+          otherData &&
+          otherData.length &&
+          otherData.map((item) => {
+            return (
+              <p
+                ref={elem}
+                id="pval"
+                className="autoSuggestValues"
+                onClick={() => suggestionSelectedValue(item)}
+                style={{
+                  maxWidth: "100%",
+                  cursor: "pointer",
+                  margin: "0px",
+                }}
+              >
+                <span>
+                  <img src={item.iconUrl} alt="coinLLogo" style={{maxWidth:"40px",padding:"10px"}}/>
+                  {item.name}
+                </span>
+              </p>
+            );
+          })}
+      </div>
+    );
   };
 
   return (

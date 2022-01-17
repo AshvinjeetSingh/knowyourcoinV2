@@ -10,7 +10,7 @@
     "@testing-library/user-event": "^13.5.0",
     "antd": "^4.17.3",
     "axios": "^0.24.0",
-    "chart.js": "^3.6.2",
+    "chart.js": "^3.7.0",
     "html-react-parser": "^1.4.3",
     "lodash": "^4.17.21",
     "millify": "^4.0.0",

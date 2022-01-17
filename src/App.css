@@ -353,7 +353,9 @@ width: 70%;
     margin: 0px 10px !important;
 }
 .search-crypto{
-    margin: 20px auto 30px auto;
+    margin-left: auto;
+    margin-bottom: 30px;
+    margin-top: 20px;
     width: 250px;
 }
 .crypto-card-container{
@@ -395,9 +397,9 @@ width: 70%;
 
 .suggestion-container{
     cursor: pointer;
-    border-left: 1px solid #000;
-    border-right: 1px solid #000;
-    border-bottom: 1px solid #000;
+    border-left: 1px solid #aea0a0;
+    border-right: 1px solid #aea0a0;
+    border-bottom: 1px solid #aea0a0;
 }
 
 .suggestion-container:hover{
@@ -412,5 +414,31 @@ width: 70%;
     position: absolute;
     z-index: 1;
     background-color: #f0f2f5;
+    width: 100%;
 }
 
+.searchCoinInput{
+    padding:5px 10px;
+    border-radius: 5px;
+    border:0px solid transparent;
+    width: 100%
+}
+
+.autoSuggestValues{
+    border-left: 1px solid #aea0a0;
+    border-right: 1px solid #aea0a0;
+    border-bottom: 1px solid #aea0a0;
+}
+
+.autoSuggestValues:hover{
+    background-color: #d4d8de;
+    transition: 0.2s;
+}
+
+.ant-pagination-options{
+    display: none!important;
+}
+
+.ant-pagination{
+    margin: 20px 0px!important;
+}
