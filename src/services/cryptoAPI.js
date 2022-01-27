@@ -5,7 +5,6 @@ const CryptoApiHeaders={
   'x-rapidapi-key': process.env.REACT_APP_API_CRYPTO_KEY
 }
 
-const baseUrl= 'https://coinranking1.p.rapidapi.com'
 const createRequest = (url) =>({url,headers:CryptoApiHeaders})
 
 export const cryptoApi= createApi({
@@ -22,17 +21,13 @@ export const cryptoApi= createApi({
     getSuggestion: builder.query({
       query: (value) => createRequest(`/search-suggestions?query=${value}`),
     }),
-    getExchanges: builder.query({
-      query: () => createRequest('/exchanges'),
-    }),
     getCryptoDetails: builder.query({
       query: (coinId) => createRequest(`/coin/${coinId}`),
     }),
-
     getCryptoHistory: builder.query({
-      query: ({ coinId, timeperiod }) => createRequest(`coin/${coinId}/history?timeperiod=${timeperiod}`),
+      query: ({ coinId, timePeriod }) => createRequest(`coin/${coinId}/history?timeperiod=${timePeriod}`),
     }),
   })
 
 })
-export const { useGetCryptosQuery,useGetSuggestionQuery,useGetCryptoOffsetQuery,useGetExchangesQuery,useGetCryptoDetailsQuery,useGetCryptoHistoryQuery } = cryptoApi;
+export const { useGetCryptosQuery,useGetSuggestionQuery,useGetCryptoOffsetQuery,useGetCryptoDetailsQuery,useGetCryptoHistoryQuery } = cryptoApi;

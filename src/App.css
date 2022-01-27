@@ -25,7 +25,7 @@ a:hover{
 
 .navbar{
     flex: 0.2;
-    background-color: rgb(0, 21, 41);
+    background-color: #171717;
 }
 
 .main{
@@ -42,11 +42,11 @@ a:hover{
     margin: 10px;
     height: 100vh;
     margin: 0px;
-    background-color: rgb(0, 21, 41);
+    background-color: #171717;
 }
 
 .logo-container{
-    background-color: #001529;
+    background-color: #171717;
     display: flex;
     padding: 20px;
     align-items: center;
@@ -75,21 +75,32 @@ a:hover{
     align-items: center;
 }
 
-@media screen and (max-width:1300px){
+/* @media screen and (max-width:1300px){
     .main{
-        margin-left: 50px;
+        margin-left: 30px;
     }
-}
+} */
 
 @media screen and (max-width:1170px){
     .main{
-        margin-left: 50px;
+        margin-left: 10px;
+    }
+}
+
+@media screen and (max-width:1100px){
+    .main{
+        margin-left: 30px;
     }
 }
 
 @media screen and (max-width:1000px){
     .main{
-        margin-left: 100px;
+        margin-left: 50px;
+    }
+}
+@media screen and (max-width:900px){
+    .main{
+        margin-left: 70px;
     }
 }
 
@@ -105,7 +116,7 @@ a:hover{
 
     .main{
         flex: 1;
-        margin-top: 90px;
+        margin-top: 80px;
         margin-left: 0px;
         margin-right: 10px;
     }
@@ -373,7 +384,7 @@ width: 70%;
 }
 
 .footer {
-    background-color: #001529;
+    background-color: #171717;
     display: flex;
     flex-direction: column;
     padding: 20px;
@@ -381,11 +392,11 @@ width: 70%;
 }
 
 .red{
-    color:red
+    color: red!important;
 }
 
 .green{
-    color:green
+    color:green!important;
 }
 
 .ant-btn{
@@ -441,4 +452,37 @@ width: 70%;
 
 .ant-pagination{
     margin: 20px 0px!important;
+}
+
+.Footer-design{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.ant-menu.ant-menu-root.ant-menu-vertical.ant-menu-dark{
+    background-color: #171717!important;
+}
+
+.ant-menu-dark.ant-menu-dark:not(.ant-menu-horizontal) .ant-menu-item-selected{
+    background-color: #171717!important;
+}
+
+.ant-menu-dark .ant-menu-item > span > a {
+    color: rgb(103 95 95);
+}
+
+.ant-menu-item a:hover,a.ant-typography, .ant-typography a{
+    color:white!important;
+}
+
+.ant-typography.show-more a{
+    color:black!important;
+}
+.Footer-design a{
+    color: rgb(103 95 95);
+}
+.Footer-design a:hover{
+    color:white!important
 }

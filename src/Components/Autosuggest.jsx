@@ -1,34 +1,25 @@
-import axios from "axios";
 import React, { useState, useEffect, useRef } from "react";
 import { useGetSuggestionQuery } from "../services/cryptoAPI";
 import { useNavigate } from "react-router-dom";
+
 function useOutsideAlerter(ref) {
   useEffect(() => {
-    /**
-     * Alert if clicked on outside of element
-     */
     function handleClickOutside(event) {
       const rows = document.getElementById("ListCoins");
-      if (rows != null && rows != undefined) {
+      if (rows !== null && rows !== undefined) {
         rows.style.display = "block";
-
-        // alert("hello tehre")
       }
       if (ref.current && !ref.current.contains(event.target)) {
-        // alert("You clicked outside of me!");
         const rows = document.getElementById("ListCoins");
         rows.style.display = "none";
       }
     }
-
-    // Bind the event listener
     document.addEventListener("mousedown", handleClickOutside);
     return () => {
-      // Unbind the event listener on clean up
       document.removeEventListener("mousedown", handleClickOutside);
     };
-  }, [ref]);
-}
+  }, [ref]);}
+
 
 const Autosuggest = (props) => {
   const history = useNavigate();
@@ -40,7 +31,6 @@ const Autosuggest = (props) => {
     data: suggestionList,
     isLoading,
     isFetching,
-    isError,
     isSuccess,
   } = useGetSuggestionQuery(searchTerm);
   const [list, setList] = useState([]);
@@ -51,13 +41,12 @@ const Autosuggest = (props) => {
 
   useEffect(() => {
     setList(suggestionList?.data?.coins);
-    console.log("renderred list is", list);
   }, [suggestionList, searchTerm]);
 
   useEffect(() => {
     function handleClickOutside(event) {
       const rows = document.getElementById("ListCoins");
-      if (rows != null && rows != undefined) {
+      if (rows !== null && rows !== undefined) {
         rows.style.display = "block";
       }
       if (node.current && !node.current.contains(event.target)) {
@@ -67,7 +56,6 @@ const Autosuggest = (props) => {
       }
     }
 
-    // Bind the event listener
     document.addEventListener("mousedown", handleClickOutside);
     return () => {
       document.removeEventListener("mousedown", handleClickOutside);
@@ -85,10 +73,6 @@ const Autosuggest = (props) => {
   }, [isLoading, isFetching, isSuccess]);
 
   useEffect(() => {
-    console.log("It is diff", matchCoins);
-  }, [matchCoins]);
-
-  useEffect(() => {
     const data =
       list &&
       list.length > 0 &&
@@ -96,14 +80,11 @@ const Autosuggest = (props) => {
         item.name.replace(/\s+/g, "-").replace(/\./g, "-").trim()
       );
     setCoins(data);
-    const otherVal = list && list.length > 0 && list;
     setOtherData(list);
   }, [list]);
   useEffect(() => {
-    console.log("coins are changed");
     let suggestion = [];
     suggestion = coins && coins.length > 0 && coins;
-    console.log("suggestion", suggestion);
     setMatchCoins(suggestion);
   }, [coins]);
 
@@ -115,7 +96,7 @@ const Autosuggest = (props) => {
   const suggestionSelectedValue = (value) => {
     setSearchTerm(value.name);
     setMatchCoins([]);
-    history(`/coins/${value.uuid}`);
+    history(`/crypto/${value.uuid}`);
   };
 
   const renderSuggestions = () => {
@@ -161,9 +142,6 @@ const Autosuggest = (props) => {
           className="searchCoinInput"
         />
         {searchTerm.length > 0 && renderSuggestions()}
-        {/* <span id="searchIcon">
-          <Icon icon={searchAlt} style={{color: '#7666E4',fontSize: '30px'}} hFlip={true} />
-        </span> */}
       </div>
     </>
   );

@@ -4,8 +4,8 @@ import {
   useGetCryptoHistoryQuery,
 } from "../services/cryptoAPI";
 import millify from "millify";
-import { Link, useParams } from "react-router-dom";
-import { Typography, Row, Col, Select } from "antd";
+import {useParams } from "react-router-dom";
+import {Typography, Row, Col} from "antd";
 import HTMLReactParser from "html-react-parser";
 import {
   MoneyCollectOutlined,
@@ -20,24 +20,24 @@ import {
 } from "@ant-design/icons";
 import Loader from "./Loader";
 import LineChart from "./Linechart";
+import Autosuggest from "./Autosuggest";
 
 const { Title, Text } = Typography;
-const { Option } = Select;
 const CryptoDetails = () => {
   const { coinId } = useParams();
-  const [timeperiod, setTimeperiod] = useState("7d");
-  const { data, isFetching } = useGetCryptoDetailsQuery(coinId);
-  const { data: coinHistory } = useGetCryptoHistoryQuery({
+  const [timePeriod] = useState("7d");
+  const [history, setHistory] = useState([]);
+  const { data,isFetching } = useGetCryptoDetailsQuery(coinId);
+  const { data: coinHistory,isLoading,isSuccess,isError,refetch} = useGetCryptoHistoryQuery({
     coinId,
-    timeperiod,
+    timePeriod,
   });
   const cryptoDetails = data?.data?.coin;
-  useEffect(() => {
-    console.log(coinHistory);
-  }, [coinHistory]);
+  useEffect(()=>{
+    setHistory(coinHistory?.data)
+    refetch()
+  },[coinHistory,timePeriod])
   if (isFetching) return <Loader />;
-
-  const time = ["3h", "24h", "7d", "30d", "1y", "3m", "3y", "5y"];
 
   const stats = [
     {
@@ -48,7 +48,7 @@ const CryptoDetails = () => {
     { title: "Rank", value: cryptoDetails?.rank, icon: <NumberOutlined /> },
     {
       title: "24h Volume",
-      value: `$ ${cryptoDetails?.volume && millify(cryptoDetails?.volume)}`,
+      value: `$ ${cryptoDetails?.["24hVolume"] && millify(cryptoDetails?.["24hVolume"])}`,
       icon: <ThunderboltOutlined />,
     },
     {
@@ -104,13 +104,13 @@ const CryptoDetails = () => {
       icon: <ExclamationCircleOutlined />,
     },
   ];
-  console.log(
-    "coin hist",
-    coinHistory,
-    cryptoDetails?.price,
-    cryptoDetails?.name
-  );
   return (
+      <>
+      <div className="search-crypto">
+    {/* <img src={icon}/> */}
+      <Autosuggest/>
+      </div>
+     
     <Col className="coin-detail-container">
       <Col className="coin-heading-container">
         <Title level={2} className="coin-name">
@@ -121,21 +121,13 @@ const CryptoDetails = () => {
           statistics, market cap and supply.
         </p>
       </Col>
-      <Select
-        defaultValue="7d"
-        className="select-timeperiod"
-        placeholder="Select Timeperiod"
-        onChange={(value) => setTimeperiod(value)}
-      >
-        {time.map((date) => (
-          <Option key={date}>{date}</Option>
-        ))}
-      </Select>
-      <LineChart
-        coinHistory={coinHistory}
+      {!isLoading && isSuccess && !isError && history && history.history && history.history.length  ? <LineChart
+        coinHistory={history}
         currentPrice={millify(cryptoDetails?.price)}
         coinName={cryptoDetails?.name}
-      />
+        timeLine={timePeriod}
+      /> : <Loader/>
+    }
       <Col className="stats-container">
         <Col className="coin-value-statistics">
           <Col className="coin-value-statistics-heading">
@@ -189,8 +181,8 @@ const CryptoDetails = () => {
           <Title level={3} className="coin-details-heading">
             {cryptoDetails.name} Links
           </Title>
-          {cryptoDetails.links?.map((link) => (
-            <Row className="coin-link" key={link.name}>
+          {cryptoDetails.links?.map((link,index) => (
+            <Row className="coin-link" key={index}>
               <Title level={5} className="link-name">
                 {link.type}
               </Title>
@@ -202,6 +194,7 @@ const CryptoDetails = () => {
         </Col>
       </Col>
     </Col>
+    </>
   );
 };
 

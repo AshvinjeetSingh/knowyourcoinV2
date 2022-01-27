@@ -1,7 +1,7 @@
 import React from 'react'
 import millify from "millify";
 import { Link } from "react-router-dom";
-import { Card, Row, Col, Input, AutoComplete, Select } from "antd";
+import { Card, Row, Col} from "antd";
 
 const CryptoCoinHome = (props) => {
     const{cryptos}=props
@@ -17,6 +17,7 @@ const CryptoCoinHome = (props) => {
                     className="crypto-image"
                     src={currency.iconUrl}
                     key={currency.id}
+                    alt='cryptocurrency'
                   />
                 }
                 hoverable

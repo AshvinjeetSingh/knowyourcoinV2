@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import millify from "millify";
 import { Link } from "react-router-dom";
-import { Card, Row, Col, Input, AutoComplete, Select } from "antd";
+import { Card, Row, Col} from "antd";
 import {
   useGetSuggestionQuery,
   useGetCryptoOffsetQuery,
@@ -10,11 +10,11 @@ import Loader from "./Loader";
 import { Pagination } from "antd";
 import Autosuggest from "./Autosuggest";
 
+
 const Cryptocurrencies = ({ simplified }) => {
   const [offset, setOffset] = useState(0);
   const [current, setCurrent] = useState(1);
-  const [searchTerm, setSearchTerm] = useState("");
-  const [suggestion, setSuggestion] = useState("");
+  const [searchTerm] = useState("");
   const { data: cryptosList, isFetching } = useGetCryptoOffsetQuery(offset);
   const { data: suggestionList, isLoading } = useGetSuggestionQuery(searchTerm);
   const [cryptos, setCryptos] = useState();
@@ -26,37 +26,16 @@ const Cryptocurrencies = ({ simplified }) => {
   }, [cryptosList, searchTerm]);
 
   useEffect(() => {
-    console.log("hello");
     setList(suggestionList?.data?.coins);
   }, [suggestionList, searchTerm]);
 
-  useEffect(() => {
-    console.log("lt si ", list);
-  }, [list]);
-
+  
   const paginate = (defaultPageSize, page) => {
     setOffset(defaultPageSize * 50 - 50);
-    console.log(defaultPageSize);
     setCurrent(defaultPageSize);
   };
 
-  const searchSuggestion = (e) => {
-    let matches = [];
-    if (searchTerm.length > 0) {
-      matches = list.filter((user) => {
-        const regex = new RegExp(`${searchTerm}`, "gi");
-        return user.name.match(regex);
-      });
-    }
-    setList(matches);
-    console.log("matches", matches);
-    setSearchTerm(e.target.value.toLowerCase());
-  };
 
-  const suggestionSelected = (text) => {
-    setSearchTerm(text);
-    setList([]);
-  };
 
   if (isFetching) return <Loader />;
   if (isLoading) return "Wait...";
@@ -78,6 +57,7 @@ const Cryptocurrencies = ({ simplified }) => {
                     className="crypto-image"
                     src={currency.iconUrl}
                     key={currency.id}
+                    alt="currency"
                   />
                 }
                 hoverable

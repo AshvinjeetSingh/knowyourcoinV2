@@ -6,6 +6,7 @@ import { Link } from "react-router-dom";
 import CryptoCoinHome from "./CryptoCoinHome";
 import Loader from "./Loader";
 import News from "./News";
+import Autosuggest from "./Autosuggest";
 
 const { Title } = Typography;
 const Homepage = () => {
@@ -15,6 +16,10 @@ const Homepage = () => {
   if (isFetching) return <Loader />;
   return (
     <>
+     <div className="search-crypto">
+    {/* <img src={icon}/> */}
+      <Autosuggest/>
+      </div>
       <Title level={2} className="heading">
         Global Crypto Stats
       </Title>
