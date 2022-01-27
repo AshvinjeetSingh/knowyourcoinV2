@@ -5,7 +5,7 @@ import {
 } from "../services/cryptoAPI";
 import millify from "millify";
 import {useParams } from "react-router-dom";
-import {Typography, Row, Col} from "antd";
+import {Typography, Row, Col,Select } from "antd";
 import HTMLReactParser from "html-react-parser";
 import {
   MoneyCollectOutlined,
@@ -23,9 +23,10 @@ import LineChart from "./Linechart";
 import Autosuggest from "./Autosuggest";
 
 const { Title, Text } = Typography;
+const { Option } = Select;
 const CryptoDetails = () => {
   const { coinId } = useParams();
-  const [timePeriod] = useState("7d");
+  const [timePeriod,setTimeperiod] = useState("7d");
   const [history, setHistory] = useState([]);
   const { data,isFetching } = useGetCryptoDetailsQuery(coinId);
   const { data: coinHistory,isLoading,isSuccess,isError,refetch} = useGetCryptoHistoryQuery({
@@ -34,11 +35,11 @@ const CryptoDetails = () => {
   });
   const cryptoDetails = data?.data?.coin;
   useEffect(()=>{
-    setHistory(coinHistory?.data)
     refetch()
+    setHistory(coinHistory?.data)
   },[coinHistory,timePeriod])
   if (isFetching) return <Loader />;
-
+  const time = ['3h', '24h', '7d', '30d', '1y', '3m', '3y', '5y'];
   const stats = [
     {
       title: "Price to USD",
@@ -121,6 +122,9 @@ const CryptoDetails = () => {
           statistics, market cap and supply.
         </p>
       </Col>
+      <Select defaultValue="7d" className="select-timeperiod" placeholder="Select Timeperiod" onChange={(value) => setTimeperiod(value)}>
+        {time.map((date) => <Option key={date}>{date}</Option>)}
+      </Select>
       {!isLoading && isSuccess && !isError && history && history.history && history.history.length  ? <LineChart
         coinHistory={history}
         currentPrice={millify(cryptoDetails?.price)}
