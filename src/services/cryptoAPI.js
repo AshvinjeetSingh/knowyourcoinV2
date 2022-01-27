@@ -11,6 +11,7 @@ export const cryptoApi= createApi({
   reducerPath:'cryptoApi',
   baseQuery: fetchBaseQuery({baseUrl: process.env.REACT_APP_CRYPTO_RAPIDAPI_BASEURL}
   ),
+  refetchOnFocus: true,
   endpoints: (builder)=>({
     getCryptos: builder.query({
       query: (count)=>createRequest(`/coins?limit=${count}`)

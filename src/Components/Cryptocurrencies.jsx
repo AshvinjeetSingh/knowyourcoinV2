@@ -6,12 +6,16 @@ import {
   useGetSuggestionQuery,
   useGetCryptoOffsetQuery,
 } from "../services/cryptoAPI";
+import {useGetMarketDataQuery}from "../services/coingeckoAPI"
 import Loader from "./Loader";
 import { Pagination } from "antd";
 import Autosuggest from "./Autosuggest";
 
 
 const Cryptocurrencies = ({ simplified }) => {
+  const id="bitcoin"
+  const currency="usd"
+  const timeperiodVal="max"
   const [offset, setOffset] = useState(0);
   const [current, setCurrent] = useState(1);
   const [searchTerm] = useState("");
@@ -24,6 +28,7 @@ const Cryptocurrencies = ({ simplified }) => {
     setCryptos(cryptosList?.data?.coins);
     window.scrollTo(0, 0);
   }, [cryptosList, searchTerm]);
+
 
   useEffect(() => {
     setList(suggestionList?.data?.coins);
