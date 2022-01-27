@@ -4,20 +4,21 @@ import { Link } from 'react-router-dom'
 
 const Footer = () => {
     return (
-        <div>
-            <Typography.Title
+        <div className='Footer-design'>
+            
+        <Space>
+          <Link to="/">Home</Link>
+          <Link to="/cryptocurrencies">Cryptocurrencies</Link>
+          <Link to="/news">News</Link>
+        </Space>
+        <a href="https://knowyourcoin.netlify.app/">Know your coin V1</a>
+        <Typography.Title
           level={5}
           style={{ color: "white", textAlign: "center" }}
         >
-          Copyright © 2021
-          <Link to="/">Know your coin</Link> <br />
-          All Rights Reserved.
+          Copyright © {new Date().getFullYear()}
         </Typography.Title>
-        <Space>
-          <Link to="/">Home</Link>
-          <Link to="/exchanges">Exchanges</Link>
-          <Link to="/news">News</Link>
-        </Space>
+
         </div>
     )
 }
