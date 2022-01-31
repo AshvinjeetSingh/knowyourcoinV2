@@ -1,4 +1,5 @@
 # KNOW YOUR COIN V2 aka CRYPTOCURRENCY TRACKER
+Inspired by [Javascript mastery](https://www.youtube.com/c/JavaScriptMastery)
 This project is available on  https://knowyourcoinv2.netlify.app/
 [![Forks][forks-shield]][forks-url]
 [![Stargazers][stars-shield]][stars-url]
