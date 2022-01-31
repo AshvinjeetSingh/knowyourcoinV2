@@ -1,59 +1,52 @@
 import React from "react";
-
-import {
-  Chart as ChartJS,
-  CategoryScale,
-  LinearScale,
-  PointElement,
-  LineElement,
-  Tooltip,
-  Legend,
-} from "chart.js";
-import { Col, Row, Typography } from "antd";
 import { Line } from "react-chartjs-2";
-ChartJS.register(
-  CategoryScale,
-  LinearScale,
-  PointElement,
-  LineElement,
-  Tooltip,
-  Legend
-);
-
+import { Col, Row, Typography } from "antd";
+import { Chart as ChartJS } from "chart.js/auto";
 const { Title } = Typography;
 
-const LineChart = ({ coinHistory, currentPrice, coinName,timeLine }) => {
+const LineChart = ({ coinHistory, currentPrice, coinName }) => {
   const coinPrice = [];
   const coinTimestamp = [];
 
-  for (let i = 0; i < coinHistory?.history?.length; i += 1) {
-    coinPrice.push(coinHistory?.history[i].price);
-    coinTimestamp.push(new Date(coinHistory?.history[i].timestamp*1000).toLocaleDateString());
+  for (let i = 0; i < coinHistory?.data?.history?.length; i += 1) {
+    coinPrice.push(coinHistory?.data?.history[i].price);
+    coinTimestamp.push(
+      new Date(
+        coinHistory?.data?.history[i].timestamp * 1000
+      ).toLocaleDateString()
+    );
   }
+
+  coinPrice.reverse();
+  coinTimestamp.reverse();
 
   const data = {
     labels: coinTimestamp,
     datasets: [
       {
-        label: 'Price In USD',
+        label: "Price In USD",
         data: coinPrice,
         fill: false,
-        backgroundColor: '#0071bd',
-        borderColor: '#0071bd',
+        backgroundColor: "#0071bd",
+        borderColor: "#0071bd",
       },
     ],
   };
 
   const options = {
-      scales: {
-          x: {
-            ticks:{
-              beginAtZero: true
-            }
-          }
-      }
-    };
-  
+    scales: {
+      yAxes: [
+        {
+          ticks: {
+            beginAtZero: true,
+          },
+        },
+      ],
+    },
+  };
+
+  const color = coinHistory?.data?.change < 0 ? "red" : "green";
+
   return (
     <>
       <Row className="chart-header">
@@ -62,14 +55,17 @@ const LineChart = ({ coinHistory, currentPrice, coinName,timeLine }) => {
         </Title>
         <Col className="price-container">
           <Title level={5} className={`price-change`}>
-            Change: <span className={`${coinHistory.change < 0 ? "red" : "green"}`}>{coinHistory?.change}%</span>
+            Change:{" "}
+            <span className={color}>
+              {coinHistory?.data?.change ? `${coinHistory?.data?.change}%` : "NA"}
+            </span>
           </Title>
           <Title level={5} className="current-price">
             Current {coinName} Price: $ {currentPrice}
           </Title>
         </Col>
       </Row>
-      <Line data={data} options={options}/>
+      <Line data={data} options={options} />
     </>
   );
 };
