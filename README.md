@@ -69,9 +69,10 @@ In this modern era when everybody is migrating to a digital world one should be 
 
 ### Technology Used
 1. [ReactJS](https://reactjs.org/)
-2. RestAPI [Coin Ranking](https://rapidapi.com/Coinranking/api/coinranking1/)
-3. [Ant design](https://ant.design/)
-4. [Redux Toolkit](https://redux-toolkit.js.org/)
+2. RestAPI Cryptocurrencies[Coin Ranking](https://rapidapi.com/Coinranking/api/coinranking1/)
+3. RestAPI News[Bing news search](https://rapidapi.com/microsoft-azure-org-microsoft-cognitive-services/api/bing-news-search1/)
+4. [Ant design](https://ant.design/)
+5. [Redux Toolkit](https://redux-toolkit.js.org/)
 
 
 
@@ -100,7 +101,7 @@ This is an example of how to list things you need to use the software and how to
 
 3. Folder Structure
 
- ![image](https://user-images.githubusercontent.com/51511908/151855641-df6646af-0a7c-4755-bae1-04450ac5b330.png)
+![image](https://user-images.githubusercontent.com/51511908/151857333-e940089e-fb6c-4bf8-b04e-f43b712f0109.png)
 
 ## Usage
 Once the application is loaded user will directed to Home page which contain information about global crypto statistics and along with that latest news and top 10 cryptocurrencies <br/>
@@ -167,7 +168,7 @@ Project Link: [https://github.com/AshvinjeetSingh/knowyourcoinV2](https://github
 
 
 
-<!-- MARKDOWN LINKS & IMAGES -->>
+<!-- MARKDOWN LINKS & IMAGES -->
 
 [contributors-url]: https://github.com/AshvinjeetSingh/knowyourcoinV2/graphs/contributors
 [forks-shield]: https://img.shields.io/github/forks/AshvinjeetSingh/knowyourcoinV2
