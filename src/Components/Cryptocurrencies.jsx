@@ -6,7 +6,6 @@ import {
   useGetSuggestionQuery,
   useGetCryptoOffsetQuery,
 } from "../services/cryptoAPI";
-import {useGetMarketDataQuery}from "../services/coingeckoAPI"
 import Loader from "./Loader";
 import { Pagination } from "antd";
 import Autosuggest from "./Autosuggest";
