@@ -521,7 +521,7 @@ a.ant-typography,
 }
 
 .ant-typography.show-more a {
-  color: black !important;
+  color: white !important;
 }
 
 .Footer-design a {
@@ -530,4 +530,18 @@ a.ant-typography,
 
 .Footer-design a:hover {
   color: white !important;
+}
+
+.ant-typography.show-more{
+  background-color: black;
+  padding:10px;
+  border-radius: 5px;
+}
+
+
+
+@media screen and (max-width: 564px) {
+  .ant-typography.show-more{
+    display: none;
+  }
 }
