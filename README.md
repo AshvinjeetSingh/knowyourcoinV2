@@ -109,7 +109,7 @@ This is an example of how to list things you need to use the software and how to
 ## Usage
 Once the application is loaded user will directed to Home page which contain information about global crypto statistics and along with that latest news and top 10 cryptocurrencies <br/>
 
-![image](https://user-images.githubusercontent.com/51511908/151855183-2905cc4e-11cc-41e6-a574-2ab10902cca4.png)
+![image](https://user-images.githubusercontent.com/51511908/151911709-54459d01-28ab-48f1-bde9-fd4edb82812c.png)
 
 On the left navigation user have 3 option from which user can navigate to different pages<br/>
 
